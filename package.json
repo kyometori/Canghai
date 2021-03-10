@@ -1,0 +1,22 @@
+{
+  "name": "canghai",
+  "version": "1.0.0",
+  "description": "bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wen648/Canghai.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wen648/Canghai/issues"
+  },
+  "homepage": "https://github.com/wen648/Canghai#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1"
+  }
+}
