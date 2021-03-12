@@ -3,9 +3,11 @@ const client = new Discord.Client()
 
 const config = require('./config.json')
 const command = require('./command')
+const firstMessage = require('./first-message')
 
 client.on('ready', () => {
     console.log("成功登入" + client.user.tag)
+    firstMessage(client, '819820219052458014', '已啟動', ['🔥'])
     //client.user.setActivity("As@指令"); //正在遊玩...
 
     //#region 
