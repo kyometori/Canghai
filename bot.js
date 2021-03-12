@@ -1,8 +1,8 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-const config = require('./config.json') 
-const command = require('./command') 
+const config = require('./config.json')
+const command = require('./command')
 const firstMessage = require('./first-message') //  :12 頻道訊息
 const privateMessage = require('./private-message') // :15 發私訊
 
@@ -11,10 +11,10 @@ client.on('ready', () => {
 
     firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動]
 
-    privateMessage(client, 'pi', 'Pong!')  
-    client.users.fetch('400275443854344192').then((user) => { //發私訊說[已啟動]
-        user.send('已啟動!!!')
-    })
+    // privateMessage(client, 'pi', 'Pong!')
+    // client.users.fetch('400275443854344192').then((user) => { //發私訊說[已啟動]
+    //     user.send('已啟動!!!')
+    // })
     //client.user.setActivity("As@指令"); //正在遊玩...
 
     //#region 
@@ -47,6 +47,32 @@ client.on('ready', () => {
                 type: 0,
             },
         })
+    })
+    command(client, '創建文字頻道', (message) => {  //創建文字頻道
+        const name = message.content.replace('as@創建文字頻道 ', '')
+
+        message.guild.channels
+            .create(name, {
+                type: 'text',
+            })
+            .then((channel) => {
+                //console.log(channel)
+                const categoryId = '813290604985319464'
+                channel.setParent(categoryId)
+            })
+    })
+    command(client, '創建語音頻道', (message) => {  //創建語音頻道
+        const name = message.content.replace('as@創建語音頻道 ', '')
+
+        message.guild.channels
+            .create(name, {
+                type: 'voice',
+            })
+            .then((channel) => {
+                const categoryId = '813290604985319464'
+                channel.setParent(categoryId)
+                channel.setUserLimit(10)
+            })
     })
     //#endregion
 })
