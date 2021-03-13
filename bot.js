@@ -5,21 +5,20 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :12 頻道訊息
-const privateMessage = require('./private-message') // :15 發私訊
+const firstMessage = require('./first-message') //  :16 頻道訊息
+const privateMessage = require('./private-message') // :17
+const roleClaim = require('./role-claim') //:18 自動身分組
 //#endregion
 
 client.on('ready', () => {
     console.log("成功登入" + client.user.tag)
-
-    firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動]
-
-    // privateMessage(client, 'pi', 'Pong!')
-    // client.users.fetch('400275443854344192').then((user) => { //發私訊說[已啟動]
-    //     user.send('已啟動!!!')
-    // })
-    //client.user.setActivity("As@指令"); //正在遊玩...
-
+    //#region 需連接 :5-區塊
+    firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
+    privateMessage(client, 'pi', 'Pong!') //連接 :9
+    roleClaim(client)  //自動身分組 連接 :10
+    //#endregion
+    client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
+    // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
     //#region 指令區
     //#region ping,test皆回復[Pong!]
     command(client, ['ping', 'test'], (message) => {
@@ -188,11 +187,11 @@ client.on('ready', () => {
                     name: 'as@成員數量',
                     value: '該群成員數量',
                     inline: true,
-                },{
-                    name: 'as@伺服器信息',
-                    value: '該群伺服器信息',
-                    inline: true,
-                }
+                }, {
+                name: 'as@伺服器信息',
+                value: '該群伺服器信息',
+                inline: true,
+            }
             )
             .setDescription('**會持續增加**')
         message.channel.send(embed)
