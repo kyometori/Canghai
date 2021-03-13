@@ -1,10 +1,13 @@
+//#region 導入discord.js
 const Discord = require('discord.js')
 const client = new Discord.Client()
-
+//#endregion
+//#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
 const firstMessage = require('./first-message') //  :12 頻道訊息
 const privateMessage = require('./private-message') // :15 發私訊
+//#endregion
 
 client.on('ready', () => {
     console.log("成功登入" + client.user.tag)
@@ -17,7 +20,7 @@ client.on('ready', () => {
     // })
     //client.user.setActivity("As@指令"); //正在遊玩...
 
-    //#region 
+    //#region 指令區
     command(client, ['ping', 'test'], (message) => { //ping,test皆回復[Pong!]
         message.channel.send('Pong!')
     })
@@ -48,6 +51,7 @@ client.on('ready', () => {
             },
         })
     })
+    //#region 創建頻道
     command(client, '創建文字頻道', (message) => {  //創建文字頻道
         const name = message.content.replace('as@創建文字頻道 ', '')
 
@@ -74,6 +78,8 @@ client.on('ready', () => {
                 channel.setUserLimit(10)
             })
     })
+    //#endregion
+    //#region 普通embed
     command(client, 'embed', (message) => {
         const logo =
             'https://images-ext-1.discordapp.net/external/Rn2yYpEmFgSjGxvNOwrHO4DUr_PvOH0lVqp6QTP_qMg/https/i.imgur.com/zbXslRQ.png'
@@ -110,6 +116,52 @@ client.on('ready', () => {
         message.channel.send(embed)
     })
     //#endregion
+    //#region 伺服器信息
+    command(client, '伺服器信息', (message) => {
+        const { guild } = message
+
+        const { name, region, memberCount, owner, id, createdAt, verificationLevel, } = guild
+        const icon = guild.iconURL()
+
+        const embed = new Discord.MessageEmbed()
+            .setTitle(`${name}－ 伺服器信息`)
+            .setThumbnail(icon)
+            .setColor('#66f5fd')
+            .setTimestamp()
+            .addFields(
+                {
+                    name: '地區',
+                    value: region,
+                    inline: true,
+                }, {
+                name: '總人數',
+                value: memberCount,
+                inline: true,
+            }, {
+                name: '群主',
+                value: owner.user.tag,
+                inline: true,
+            }, {
+                name: '伺服器id',
+                value: id,
+                inline: true,
+            }, {
+                name: '創建時間',
+                value: createdAt,
+                inline: true,
+            }, {
+                name: '驗證等級',
+                value: verificationLevel,
+                inline: true,
+            }
+            )
+
+        message.channel.send(embed)
+    })
+    //#endregion
+    //#endregion
 })
 
+//#region key
 client.login(config.token)
+//#endregion
