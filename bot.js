@@ -21,10 +21,13 @@ client.on('ready', () => {
     //client.user.setActivity("As@指令"); //正在遊玩...
 
     //#region 指令區
-    command(client, ['ping', 'test'], (message) => { //ping,test皆回復[Pong!]
+    //#region ping,test皆回復[Pong!]
+    command(client, ['ping', 'test'], (message) => {
         message.channel.send('Pong!')
     })
-    command(client, 'servers', (message) => {  //成員數量
+    //#endregion
+    //#region 成員數量
+    command(client, '成員數量', (message) => {
         client.guilds.cache.forEach((guild) => {
             //console.log(guild),
             message.channel.send(
@@ -32,7 +35,9 @@ client.on('ready', () => {
             )
         })
     })
-    /*command(client, ['cc', 'clearchannel'], (message) => {  //刪除該頻道所有訊息
+    //#endregion
+    //#region 刪除該頻道所有訊息 (未啟用)
+    /*command(client, ['cc', 'clearchannel'], (message) => {  
         if (message.member.hasPermission('ADMINISTRATOR')) {
             message.channel.messages.fetch().then((results) => {
                 //console.log(results),
@@ -40,7 +45,9 @@ client.on('ready', () => {
             })
         }
     })*/
-    command(client, 'status', (message) => {  //更新bot狀態
+    //#endregion
+    //#region 更新bot狀態
+    command(client, 'status', (message) => {
         const content = message.content.replace('as@status ', '')
         // "!status hello world" -> "hello world"
 
@@ -51,6 +58,7 @@ client.on('ready', () => {
             },
         })
     })
+    //#endregion
     //#region 創建頻道
     command(client, '創建文字頻道', (message) => {  //創建文字頻道
         const name = message.content.replace('as@創建文字頻道 ', '')
@@ -156,6 +164,37 @@ client.on('ready', () => {
             }
             )
 
+        message.channel.send(embed)
+    })
+    //#endregion
+    //#region 幫助
+    command(client, '幫助', (message) => {
+        const embed = new Discord.MessageEmbed()
+            .setColor('#66f5fd')
+            .setTitle('插件指令')
+            .setTimestamp()
+            .setThumbnail('https://ppt.cc/fLWcMx')
+            .addFields(
+                {
+                    name: '前綴',
+                    value: 'as@',
+                },
+                {
+                    name: 'ping,test',
+                    value: 'pong',
+                    inline: true,
+                },
+                {
+                    name: 'as@成員數量',
+                    value: '該群成員數量',
+                    inline: true,
+                },{
+                    name: 'as@伺服器信息',
+                    value: '該群伺服器信息',
+                    inline: true,
+                }
+            )
+            .setDescription('**會持續增加**')
         message.channel.send(embed)
     })
     //#endregion
