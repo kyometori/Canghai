@@ -5,9 +5,10 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :16 頻道訊息
-const privateMessage = require('./private-message') // :17
-const roleClaim = require('./role-claim') //:18 自動身分組
+const firstMessage = require('./first-message') //  :17 頻道訊息
+const privateMessage = require('./private-message') // :18
+const roleClaim = require('./role-claim') //:19 自動身分組
+const poll = require('./poll') //:20 自動投票 
 //#endregion
 
 client.on('ready', () => {
@@ -16,6 +17,7 @@ client.on('ready', () => {
     //firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
     privateMessage(client, 'pi', 'Pong!') //連接 :9
     //roleClaim(client)  //自動身分組 連接 :10
+    poll(client) //自動投票 連接 :11
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
@@ -25,8 +27,8 @@ client.on('ready', () => {
         message.channel.send('Pong!')
     })
     //#endregion
-    //#region 成員數量
-    command(client, '成員數量', (message) => {
+    //#region 成員數量,servers
+    command(client, ['成員數量','servers'], (message) => {
         client.guilds.cache.forEach((guild) => {
             //console.log(guild),
             message.channel.send(
@@ -123,8 +125,8 @@ client.on('ready', () => {
         message.channel.send(embed)
     })
     //#endregion
-    //#region 伺服器信息
-    command(client, '伺服器信息', (message) => {
+    //#region 伺服器信息,serverinfo
+    command(client, ['伺服器信息', 'serverinfo'], (message) => {
         const { guild } = message
 
         const { name, region, memberCount, owner, id, createdAt, verificationLevel, } = guild
@@ -166,8 +168,8 @@ client.on('ready', () => {
         message.channel.send(embed)
     })
     //#endregion
-    //#region 幫助
-    command(client, '幫助', (message) => {
+    //#region 幫助,help
+    command(client, ['幫助', 'help'], (message) => {
         const embed = new Discord.MessageEmbed()
             .setColor('#66f5fd')
             .setTitle('插件指令')
@@ -197,8 +199,8 @@ client.on('ready', () => {
         message.channel.send(embed)
     })
     //#endregion
-    //#region 封鎖
-    command(client, 'ban', (message) => {
+    //#region 封鎖,ban
+    command(client, ['封鎖', 'ban'], (message) => {
         const { member, mentions } = message
 
         const tag = `<@${member.id}>`
@@ -222,8 +224,8 @@ client.on('ready', () => {
         }
     })
     //#endregion
-    //#region 踢人
-    command(client, 'kick', (message) => {
+    //#region 踢除,kick
+    command(client, ['踢除', 'kick'], (message) => {
         const { member, mentions } = message
 
         const tag = `<@${member.id}>`
