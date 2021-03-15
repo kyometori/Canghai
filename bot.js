@@ -5,10 +5,11 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :17 頻道訊息
-const privateMessage = require('./private-message') // :18
-const roleClaim = require('./role-claim') //:19 自動身分組
-const poll = require('./poll') //:20 自動投票 
+const firstMessage = require('./first-message') //  :18 頻道訊息
+const privateMessage = require('./private-message') // :19
+const roleClaim = require('./role-claim') //:20 自動身分組
+const poll = require('./poll') //:21 自動投票 
+const welcome = require('./welcome') //:22 歡迎訊息
 //#endregion
 
 client.on('ready', () => {
@@ -18,6 +19,7 @@ client.on('ready', () => {
     privateMessage(client, 'pi', 'Pong!') //連接 :9
     //roleClaim(client)  //自動身分組 連接 :10
     poll(client) //自動投票 連接 :11
+    welcome(client) //歡迎訊息 連接 :12
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
@@ -28,7 +30,7 @@ client.on('ready', () => {
     })
     //#endregion
     //#region 成員數量,servers
-    command(client, ['成員數量','servers'], (message) => {
+    command(client, ['成員數量', 'servers'], (message) => {
         client.guilds.cache.forEach((guild) => {
             //console.log(guild),
             message.channel.send(
