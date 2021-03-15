@@ -13,9 +13,9 @@ const roleClaim = require('./role-claim') //:18 自動身分組
 client.on('ready', () => {
     console.log("成功登入" + client.user.tag)
     //#region 需連接 :5-區塊
-    firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
+    //firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
     privateMessage(client, 'pi', 'Pong!') //連接 :9
-    roleClaim(client)  //自動身分組 連接 :10
+    //roleClaim(client)  //自動身分組 連接 :10
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
@@ -195,6 +195,55 @@ client.on('ready', () => {
             )
             .setDescription('**會持續增加**')
         message.channel.send(embed)
+    })
+    //#endregion
+    //#region 封鎖
+    command(client, 'ban', (message) => {
+        const { member, mentions } = message
+
+        const tag = `<@${member.id}>`
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('BAN_MEMBERS')
+        ) {
+            const target = mentions.users.first()
+            console.log(target)
+            if (target) {
+                const targetMember = message.guild.members.cache.get(target.id)
+                targetMember.ban()
+                message.channel.send(`${tag},已把${target}列入封鎖名單`)
+            } else {
+                message.channel.send(`${tag} 請指定要封鎖的人`)
+            }
+        }
+        else {
+            message.channel.send(`${tag} 沒有權限使用該功能.`)
+        }
+    })
+    //#endregion
+    //#region 踢人
+    command(client, 'kick', (message) => {
+        const { member, mentions } = message
+
+        const tag = `<@${member.id}>`
+
+        if (
+            member.hasPermission('ADMINISTRATOR') ||
+            member.hasPermission('KICK_MEMBERS')
+        ) {
+            const target = mentions.users.first()
+            if (target) {
+                const targetMember = message.guild.members.cache.get(target.id)
+                targetMember.kick()
+                message.channel.send(`${tag},已把${target}剔除該伺服器`)
+            } else {
+                message.channel.send(`${tag} 請指定要踢除的人`)
+            }
+        }
+        else {
+            message.channel.send(`${tag} 沒有權限使用該功能.`)
+        }
     })
     //#endregion
     //#endregion
