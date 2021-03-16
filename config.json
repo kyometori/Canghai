@@ -1,4 +1,5 @@
 {
     "token":"token",
-    "prefix":"as@"
+    "prefix":"as@",
+    "mongoPath":"mongodb://localhost:27017"
 }

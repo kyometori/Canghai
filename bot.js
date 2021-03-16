@@ -11,9 +11,11 @@ const roleClaim = require('./role-claim') // :21 自動身分組
 const poll = require('./poll') // :22 自動投票 
 const welcome = require('./welcome') // :23 歡迎訊息
 const memberCount = require('./member-count') // :24 人數統計
+const sendMessage = require('./send-message') //定時
+const mongo = require('./mongo')
 //#endregion
 
-client.on('ready', () => {
+client.on('ready', async () => {
     console.log("成功登入" + client.user.tag)
     //#region 需連接 :5-區塊
     //firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
@@ -25,6 +27,15 @@ client.on('ready', () => {
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
+    //#region mongodb
+    await mongo().then((mongoose) => {
+        try {
+            console.log('Connected to mongo!')
+        } finally {
+            mongoose.connection.close()
+        }
+    })
+    //#endregion
     //#region 指令區
     //#region ping,test皆回復[Pong!]
     command(client, ['ping', 'test'], (message) => {
@@ -251,6 +262,12 @@ client.on('ready', () => {
             message.channel.send(`${tag} 沒有權限使用該功能.`)
         }
     })
+    //#endregion
+    //#region 臨時訊息
+    const guild = client.guilds.cache.get('405916711930560523')
+    const channel = guild.channels.cache.get('698177994040147988')
+
+    sendMessage(channel, 'hello world', 3)
     //#endregion
     //#endregion
 })
