@@ -5,11 +5,12 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :18 頻道訊息
-const privateMessage = require('./private-message') // :19
-const roleClaim = require('./role-claim') //:20 自動身分組
-const poll = require('./poll') //:21 自動投票 
-const welcome = require('./welcome') //:22 歡迎訊息
+const firstMessage = require('./first-message') //  :19 頻道訊息
+const privateMessage = require('./private-message') // :20
+const roleClaim = require('./role-claim') // :21 自動身分組
+const poll = require('./poll') // :22 自動投票 
+const welcome = require('./welcome') // :23 歡迎訊息
+const memberCount = require('./member-count') // :24 人數統計
 //#endregion
 
 client.on('ready', () => {
@@ -20,6 +21,7 @@ client.on('ready', () => {
     //roleClaim(client)  //自動身分組 連接 :10
     poll(client) //自動投票 連接 :11
     welcome(client) //歡迎訊息 連接 :12
+    memberCount(client) //人數統計 連接 :13
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
