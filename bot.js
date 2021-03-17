@@ -5,12 +5,12 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :19 頻道訊息
-const privateMessage = require('./private-message') // :20
-const roleClaim = require('./role-claim') // :21 自動身分組
-const poll = require('./poll') // :22 自動投票 
-const welcome = require('./welcome') // :23 歡迎訊息
-const memberCount = require('./member-count') // :24 人數統計
+const firstMessage = require('./first-message') //  :21 頻道訊息
+const privateMessage = require('./private-message') // :22
+const roleClaim = require('./role-claim') // :23 自動身分組
+const poll = require('./poll') // :24 自動投票 
+const welcome = require('./welcome') // :25 歡迎訊息
+const memberCount = require('./member-count') // :26 人數統計
 const sendMessage = require('./send-message') //定時
 const mongo = require('./mongo')
 //#endregion
@@ -264,10 +264,10 @@ client.on('ready', async () => {
     })
     //#endregion
     //#region 臨時訊息
-    const guild = client.guilds.cache.get('405916711930560523')
-    const channel = guild.channels.cache.get('698177994040147988')
+    // const guild = client.guilds.cache.get('405916711930560523')
+    // const channel = guild.channels.cache.get('698177994040147988')
 
-    sendMessage(channel, 'hello world', 3)
+    // sendMessage(channel, 'hello world', 3)
     //#endregion
     //#endregion
 })
