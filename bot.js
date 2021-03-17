@@ -5,32 +5,32 @@ const client = new Discord.Client()
 //#region 指令外加檔導入
 const config = require('./config.json')
 const command = require('./command')
-const firstMessage = require('./first-message') //  :21 頻道訊息
-const privateMessage = require('./private-message') // :22
-const roleClaim = require('./role-claim') // :23 自動身分組
-const poll = require('./poll') // :24 自動投票 
-const welcome = require('./welcome') // :25 歡迎訊息
-const memberCount = require('./member-count') // :26 人數統計
-const sendMessage = require('./send-message') //定時
-const mongo = require('./mongo')
+const firstMessage = require('./commands/first-message') //  :21 頻道訊息
+const privateMessage = require('./commands/private-message') // :22
+const roleClaim = require('./commands/role-claim') // :23 自動身分組
+const poll = require('./commands/poll') // :24 自動投票 
+const welcome = require('./mongo/welcome') // :25 歡迎訊息
+const memberCount = require('./commands/member-count') // :26 人數統計
+const sendMessage = require('./commands/send-message') //定時
+const mongo = require('./mongo/mongo')
 //#endregion
 
 client.on('ready', async () => {
     console.log("成功登入" + client.user.tag)
     //#region 需連接 :5-區塊
     //firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動] 連接 :8
-    privateMessage(client, 'pi', 'Pong!') //連接 :9
+    //privateMessage(client, 'pi', 'Pong!') //連接 :9
     //roleClaim(client)  //自動身分組 連接 :10
-    poll(client) //自動投票 連接 :11
-    welcome(client) //歡迎訊息 連接 :12
-    memberCount(client) //人數統計 連接 :13
+    //poll(client) //自動投票 連接 :11
+    //welcome(client) //歡迎訊息 連接 :12
+    //memberCount(client) //人數統計 連接 :13
     //#endregion
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
     //#region mongodb
     await mongo().then((mongoose) => {
         try {
-            console.log('Connected to mongo!')
+            console.log('已連接到mongo!')
         } finally {
             mongoose.connection.close()
         }
