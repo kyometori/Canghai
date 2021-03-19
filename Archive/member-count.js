@@ -1,3 +1,4 @@
+//人數統計
 module.exports = (client) => {
   const channelId = '819481535891243048'
 
@@ -12,3 +13,8 @@ module.exports = (client) => {
   const guild = client.guilds.cache.get('')
   updateMembers(guild)
 }
+
+//---bot.js---
+const memberCount = require('路徑')
+
+memberCount(client)

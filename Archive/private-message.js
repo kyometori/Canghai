@@ -13,3 +13,8 @@ module.exports = (client, triggerText, replyText) => {
   !== 為頻道
   === 為私訊
 */
+
+//---bot.js---
+const privateMessage = require('路徑')
+
+privateMessage(client, 'pi', 'Pong!')
