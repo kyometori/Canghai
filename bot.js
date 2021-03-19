@@ -5,24 +5,28 @@ const config = require('./config.json')
 const command = require('./command')
 //#endregion
 //#region commmands-指令外加檔導入
-const firstMessage = require('./commands/first-message') //頻道訊息
+//const firstMessage = require('./commands/first-message') //頻道訊息
 const privateMessage = require('./commands/private-message')
-const roleClaim = require('./commands/role-claim') //自動身分組
+//const roleClaim = require('./commands/role-claim') //自動身分組
 const poll = require('./commands/poll') //自動投票 
-const memberCount = require('./commands/member-count') //人數統計
-const sendMessage = require('./commands/send-message') //定時
+//const memberCount = require('./commands/member-count') //人數統計
+//const sendMessage = require('./commands/send-message') //定時
 //#endregion
 //#region mongo-指令外加檔導入
 const mongo = require('./mongo/mongo')
 const welcome = require('./mongo/welcome') //歡迎訊息 
 const messagecount = require('./mongo/message-counter') //用戶數據
 //#endregion
-const mute = require('./mute')
+//#region redis-指令外加檔導入
+const mute = require('./redis/mute')
+//#endregion
 client.on('ready', async () => {
     console.log("成功登入" + client.user.tag)
+    client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
+    //client.users.fetch('').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
     //#region 一般  :7-區塊
-    //firstMessage(client, '819820219052458014', '已啟動', ['🔥']) //頻道訊息說[已啟動]
-    privateMessage(client, 'pi', 'Pong!') //連接
+    //firstMessage(client, '', '已啟動', ['🔥']) //頻道訊息說[已啟動]
+    privateMessage(client, 'pi', 'Pong!') 
     //roleClaim(client)  //自動身分組
     poll(client) //自動投票 
     //memberCount(client) //人數統計
@@ -31,9 +35,9 @@ client.on('ready', async () => {
     welcome(client) //歡迎訊息
     messagecount(client) //用戶數據
     //#endregion
+    //#region redis :20-區塊
     mute(client)
-    client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
-    // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
+    //#endregion
     //#region mongodb
     await mongo().then((mongoose) => {
         try {
