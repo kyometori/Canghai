@@ -17,6 +17,7 @@ const mongo = require('./mongo/mongo')
 const welcome = require('./mongo/welcome') //歡迎訊息 
 const messagecount = require('./mongo/message-counter') //用戶數據
 //#endregion
+const mute = require('./mute')
 client.on('ready', async () => {
     console.log("成功登入" + client.user.tag)
     //#region 一般  :7-區塊
@@ -30,6 +31,7 @@ client.on('ready', async () => {
     welcome(client) //歡迎訊息
     messagecount(client) //用戶數據
     //#endregion
+    mute(client)
     client.user.setActivity("as@幫助 | 製作者:WaDe#6765"); //正在遊玩...
     // client.users.fetch('400275443854344192').then((user) => {user.send('已啟動!!!')}) //發私訊說[已啟動]
     //#region mongodb
