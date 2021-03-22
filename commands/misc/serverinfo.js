@@ -1,7 +1,8 @@
 const Discord = require('discord.js')
 module.exports = {
     commands: ['伺服器信息', 'serverinfo'],
-    permissionError: '您需要管理員權限才能運行此命令',
+    minArgs: 0,
+    maxArgs: 0,
     callback: (message) => {
         const { guild } = message
 
@@ -43,5 +44,4 @@ module.exports = {
 
         message.channel.send(embed)
     },
-    requiredRoles: [],
 }

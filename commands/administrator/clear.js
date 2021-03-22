@@ -1,6 +1,9 @@
 module.exports = {
     commands: 'clear',
+    expectedArgs: '<num>',
     permissionError: '您需要管理員權限才能運行此命令',
+    minArgs: 1,
+    maxArgs: 1,
     callback: async (message, args) => {
         if (!args[0]) return message.reply("請輸入要清除的消息數量！");
 
@@ -16,5 +19,4 @@ module.exports = {
 
     },
     permissions: 'ADMINISTRATOR',
-    requiredRoles: [],
 }

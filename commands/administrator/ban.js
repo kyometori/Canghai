@@ -1,7 +1,10 @@
 module.exports = {
     commands: ['封鎖', 'ban'],
+    expectedArgs: '<name>',
     permissionError: '您需要管理員權限才能運行此命令',
-    callback: (message, arguments, text) => {
+    minArgs: 1,
+    maxArgs: 1,
+    callback: (message) => {
         const { member, mentions } = message
 
         const tag = `<@${member.id}>`
@@ -17,5 +20,4 @@ module.exports = {
         }
     },
     permissions: ['ADMINISTRATOR', 'BAN_MEMBERS'],
-    requiredRoles: [],
 }

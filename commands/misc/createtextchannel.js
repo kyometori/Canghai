@@ -1,5 +1,8 @@
 module.exports = {
     commands: '創建文字頻道',
+    expectedArgs: '<name>',
+    minArgs: 1,
+    maxArgs: 1,
     callback: (message) => {
         const name = message.content.replace('as@創建文字頻道 ', '')
 
@@ -13,6 +16,4 @@ module.exports = {
                 channel.setParent(categoryId)
             })
     },
-    permissions: [],
-    requiredRoles: [],
 }

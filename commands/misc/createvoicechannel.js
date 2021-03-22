@@ -1,5 +1,8 @@
 module.exports = {
     commands: '創建語音頻道',
+    expectedArgs: '<name>',
+    minArgs: 1,
+    maxArgs: 1,
     callback: (message) => {
         const name = message.content.replace('as@創建語音頻道 ', '')
 
@@ -13,6 +16,4 @@ module.exports = {
                 channel.setUserLimit(10)
             })
     },
-    permissions: [],
-    requiredRoles: [],
 }

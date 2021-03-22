@@ -1,6 +1,8 @@
 const Discord = require('discord.js')
 module.exports = {
     commands: ['幫助', 'help'],
+    minArgs: 0,
+    maxArgs: 0,
     callback: (message) => {
         const embed = new Discord.MessageEmbed()
             .setColor('#66f5fd')
@@ -30,5 +32,4 @@ module.exports = {
             .setDescription('**會持續增加**')
         message.channel.send(embed)
     },
-    requiredRoles: [],
 }

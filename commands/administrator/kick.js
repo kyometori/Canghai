@@ -1,6 +1,9 @@
 module.exports = {
     commands: ['踢除', 'kick'],
+    expectedArgs: '<name>',
     permissionError: '您需要管理員權限才能運行此命令',
+    minArgs: 1,
+    maxArgs: 1,
     callback: (message) => {
         const { member, mentions } = message
 
@@ -16,5 +19,4 @@ module.exports = {
         }
     },
     permissions: ['ADMINISTRATOR', 'KICK_MEMBERS'],
-    requiredRoles: [],
 }
