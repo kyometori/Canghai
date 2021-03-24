@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const reqString = {
   type: String,
   required: true,
-}
+};
 
 const profileSchema = mongoose.Schema({
   guildId: reqString,
@@ -12,6 +12,6 @@ const profileSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-})
+});
 
-module.exports = mongoose.model('profiles', profileSchema)
+module.exports = mongoose.model("profiles", profileSchema);

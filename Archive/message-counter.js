@@ -1,12 +1,12 @@
-const mongo = require('../mongo/mongo')
-const messageCountSchema = require('./message-count-schema')
+const mongo = require("../mongo/mongo");
+const messageCountSchema = require("./message-count-schema");
 
 module.exports = (client) => {
-  client.on('message', async (message) => {
-    const { author } = message
+  client.on("message", async (message) => {
+    const { author } = message;
     //console.log('AUTHOR:',author)
-    const { id } = author
-    
+    const { id } = author;
+
     await mongo().then(async (mongoose) => {
       try {
         await messageCountSchema
@@ -23,10 +23,10 @@ module.exports = (client) => {
               upsert: true,
             }
           )
-          .exec()
+          .exec();
       } finally {
-        mongoose.connection.close()
+        mongoose.connection.close();
       }
-    })
-  })
-}
+    });
+  });
+};

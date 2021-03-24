@@ -1,14 +1,14 @@
-const mongo = require('./mongo')
-const profileSchema = require('./profile-schema')
+const mongo = require("./mongo");
+const profileSchema = require("./profile-schema");
 
-const coinsCache = {} // { 'guildId-userId': coins }
+const coinsCache = {}; // { 'guildId-userId': coins }
 
-module.exports = (client) => { }
+module.exports = (client) => {};
 
 module.exports.addCoins = async (guildId, userId, coins) => {
   return await mongo().then(async (mongoose) => {
     try {
-      console.log('運行findOne和Update()')
+      console.log("運行findOne和Update()");
 
       const result = await profileSchema.findOneAndUpdate(
         {
@@ -26,54 +26,53 @@ module.exports.addCoins = async (guildId, userId, coins) => {
           upsert: true,
           new: true,
         }
-      )
+      );
 
-      console.log('結果：', result)
+      console.log("結果：", result);
 
-      coinsCache[`${guildId}-${userId}`] = result.coins
+      coinsCache[`${guildId}-${userId}`] = result.coins;
 
-      return result.coins
+      return result.coins;
+    } finally {
+      mongoose.connection.close();
     }
-    finally {
-      mongoose.connection.close()
-    }
-  })
-}
+  });
+};
 
 module.exports.getCoins = async (guildId, userId) => {
-  const cachedValue = coinsCache[`${guildId}-${userId}`]
+  const cachedValue = coinsCache[`${guildId}-${userId}`];
   if (cachedValue) {
-    return cachedValue
+    return cachedValue;
   }
 
   return await mongo().then(async (mongoose) => {
     try {
-      console.log('運行 findOne()')
+      console.log("運行 findOne()");
 
       const result = await profileSchema.findOne({
         guildId,
         userId,
-      })
+      });
 
-      console.log('結果：', result)
+      console.log("結果：", result);
 
-      let coins = 0
+      let coins = 0;
       if (result) {
-        coins = result.coins
+        coins = result.coins;
       } else {
-        console.log('插入文件')
+        console.log("插入文件");
         await new profileSchema({
           guildId,
           userId,
           coins,
-        }).save()
+        }).save();
       }
 
-      coinsCache[`${guildId}-${userId}`] = coins
+      coinsCache[`${guildId}-${userId}`] = coins;
 
-      return coins
+      return coins;
     } finally {
-      mongoose.connection.close()
+      mongoose.connection.close();
     }
-  })
-}
+  });
+};

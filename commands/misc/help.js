@@ -1,35 +1,47 @@
-const Discord = require('discord.js')
+const loadCommands = require("../load-commands");
+const { prefix } = require("../../config.json");
+
 module.exports = {
-    commands: ['幫助', 'help'],
-    minArgs: 0,
-    maxArgs: 0,
-    callback: (message) => {
-        const embed = new Discord.MessageEmbed()
-            .setColor('#66f5fd')
-            .setTitle('插件指令')
-            .setTimestamp()
-            .setThumbnail('https://ppt.cc/fLWcMx')
-            .addFields(
-                {
-                    name: '前綴',
-                    value: 'as@',
-                },
-                {
-                    name: 'ping,test',
-                    value: 'pong',
-                    inline: true,
-                },
-                {
-                    name: 'as@成員數量',
-                    value: '該群成員數量',
-                    inline: true,
-                }, {
-                name: 'as@伺服器信息',
-                value: '該群伺服器信息',
-                inline: true,
-            }
-            )
-            .setDescription('**會持續增加**')
-        message.channel.send(embed)
-    },
-}
+  commands: ["help", "h", "幫助"],
+  description: "描述該機器人的所有命令",
+  callback: (message, arguments, text) => {
+    let reply = "我是【TW】克勞斯，以下是我支持的命令：\n\n";
+
+    const commands = loadCommands();
+
+    for (const command of commands) {
+      // Check for permissions
+      let permissions = command.permission;
+
+      if (permissions) {
+        let hasPermission = true;
+        if (typeof permissions === "string") {
+          permissions = [permissions];
+        }
+
+        for (const permission of permissions) {
+          if (!message.member.hasPermission(permission)) {
+            hasPermission = false;
+            break;
+          }
+        }
+
+        if (!hasPermission) {
+          continue;
+        }
+      }
+
+      // Format the text
+      const mainCommand =
+        typeof command.commands === "string"
+          ? command.commands
+          : command.commands[0];
+      const args = command.expectedArgs ? ` ${command.expectedArgs}` : "";
+      const { description } = command;
+
+      reply += `**${prefix}${mainCommand}${args}** = ${description}\n`;
+    }
+
+    message.channel.send(reply);
+  },
+};
