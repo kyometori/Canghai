@@ -15,6 +15,7 @@ const poll = require('./extra/poll') //自動投票
 //#region mongo-指令外加檔導入
 const mongo = require('./mongo/mongo')
 const welcome = require('./mongo/welcome') //歡迎訊息
+const leave=require('./mongo/Leave')
 //#endregion
 
 //#region redis-指令外加檔導入
@@ -61,6 +62,7 @@ client.on('ready', async () => {
 
     //#region mongo
     welcome(client) //歡迎訊息
+    leave(client)
     //#endregion
 
     //#region redis
