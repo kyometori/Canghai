@@ -43,7 +43,7 @@ module.exports = (client) => {
                 } else if (result) {
                     giveRole(member)
                 } else {
-                    console.log('The user is not muted')
+                    console.log('用戶沒有被靜音')
                 }
             })
         } finally {
@@ -103,7 +103,7 @@ module.exports = (client) => {
         const target = mentions.users.first()
 
         if (!target) {
-            channel.send('Please tag a user to mute.')
+            channel.send('請標記用戶為靜音.')
             return
         }
 

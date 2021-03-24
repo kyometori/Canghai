@@ -14,8 +14,7 @@ const poll = require('./extra/poll') //自動投票
 
 //#region mongo-指令外加檔導入
 const mongo = require('./mongo/mongo')
-const welcome = require('./mongo/welcome') //歡迎訊息 
-const messagecount = require('./mongo/message-counter') //用戶數據
+const welcome = require('./mongo/welcome') //歡迎訊息
 //#endregion
 
 //#region redis-指令外加檔導入
@@ -37,7 +36,6 @@ client.on('ready', async () => {
                 readCommands(path.join(dir, file))
             } else if (file !== baseFile) {
                 const option = require(path.join(__dirname, dir, file))
-                //console.log(file, option)
                 commandBase(client, option)
             }
         }
@@ -63,7 +61,6 @@ client.on('ready', async () => {
 
     //#region mongo
     welcome(client) //歡迎訊息
-    messagecount(client) //用戶數據
     //#endregion
 
     //#region redis

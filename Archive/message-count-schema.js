@@ -15,3 +15,10 @@ const messageCountSchema = mongoose.Schema({
 })
 
 module.exports = mongoose.model('message-counts', messageCountSchema)
+
+//--bot.js--
+
+ 
+const messagecount = require('./mongo/message-counter') //用戶數據
+
+messagecount(client) //用戶數據

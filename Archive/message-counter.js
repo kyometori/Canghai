@@ -1,4 +1,4 @@
-const mongo = require('./mongo')
+const mongo = require('../mongo/mongo')
 const messageCountSchema = require('./message-count-schema')
 
 module.exports = (client) => {

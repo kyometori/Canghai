@@ -1,5 +1,6 @@
 {
-    "token":"ODA2NTU1MDIxMzQwNTczNzU2.YBrI5g.dehtUyQ1YcVejeShURYtRCiARms",
+    "token":"token",
     "prefix":"as@",
-    "mongoPath":"mongodb://localhost:27017/discordbot"
+    "mongoPath":"mongoPath",
+    "redisPath":"redisPath"
 }
