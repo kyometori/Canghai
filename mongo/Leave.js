@@ -55,7 +55,7 @@ module.exports = (client) => {
     let data = cache[guild.id];
 
     if (!data) {
-      console.log("從數據庫中獲取");
+      console.log("從數據庫中獲取離開數據"+guild.id);
 
       await mongo().then(async (mongoose) => {
         try {
@@ -72,7 +72,7 @@ module.exports = (client) => {
     const text = data[1];
 
     const channel = guild.channels.cache.get(channelId);
-    channel.send(text.replace(/<@>/g, `<@${member.id}>`));
+    channel.send(text.replace(/<@>/g, `${member.user.tag}`));
   };
 
   command(client, "simleave", (message) => {

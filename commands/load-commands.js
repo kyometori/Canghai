@@ -15,9 +15,7 @@ module.exports = (client) => {
         readCommands(path.join(dir, file));
       } else if (
         file !== baseFile &&
-        file !== "load-commands.js" &&
-        file !== "status.js" &&
-        file !== "servers.js"
+        file !== "load-commands.js"
       ) {
         const option = require(path.join(__dirname, dir, file));
         commands.push(option);

@@ -1,9 +1,9 @@
 module.exports = {
-  commands: ["ping", "test"],
+  commands: ["ping", "延遲"],
   minArgs: 0,
   maxArgs: 0,
-  description: "pong!",
+  description: "目前延遲查詢(Delayed Query)",
   callback: (message) => {
-    message.reply("Pong!");
+    message.reply(`目前延遲 ${Date.now() - message.createdTimestamp} ms`);
   },
 };

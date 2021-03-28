@@ -55,7 +55,7 @@ module.exports = (client) => {
     let data = cache[guild.id];
 
     if (!data) {
-      console.log("從數據庫中獲取");
+      console.log("從數據庫中獲取歡迎數據");
 
       await mongo().then(async (mongoose) => {
         try {
