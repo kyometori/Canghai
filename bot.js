@@ -14,7 +14,7 @@ const poll = require("./extra/poll"); //自動投票
 //#region mongo-指令外加檔導入
 const mongo = require("./mongo/mongo");
 const welcome = require("./mongo/welcome"); //歡迎訊息
-const leave = require("./mongo/Leave");
+const leave = require("./mongo/Leave"); //離開
 //#endregion
 
 //#region redis-指令外加檔導入
