@@ -1,5 +1,5 @@
-const mongo = require("../../mongo/mongo");
-const warnSchema = require("../../mongo/warn-schema");
+const mongo = require("@util/mongo");
+const warnSchema = require("@schemas/warn-schema");
 
 module.exports = {
   commands: ["warn", "警告"],

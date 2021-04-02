@@ -1,6 +1,6 @@
-const mongo = require("./mongo");
-const command = require("../command");
-const leaveSchema = require("./Leave-schema");
+const mongo = require("@util/mongo");
+const command = require("@util/command");
+const leaveSchema = require("@schemas/Leave-schema");
 
 module.exports = (client) => {
   //!setleave <message>

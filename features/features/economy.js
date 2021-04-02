@@ -1,5 +1,5 @@
-const mongo = require("./mongo");
-const profileSchema = require("./profile-schema");
+const mongo = require("@util/mongo");
+const profileSchema = require("@schemas/profile-schema");
 
 const coinsCache = {}; // { 'guildId-userId': coins }
 

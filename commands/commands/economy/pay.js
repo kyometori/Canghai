@@ -1,4 +1,4 @@
-const economy = require("../../mongo/economy");
+const economy = require("@features/economy");
 
 module.exports = {
   commands: "pay",

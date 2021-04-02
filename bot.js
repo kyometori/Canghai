@@ -1,24 +1,26 @@
+require("module-alias/register");
+
 //#region 導入discord.js
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const config = require("./config.json");
-const command = require("./command");
-const loadCommands = require("./commands/load-commands");
+const config = require("@root/config.json");
+const command = require("@util/command");
+const loadCommands = require("@root/commands/load-commands");
 //#endregion
 
-//#region
-const firstMessage = require("./extra/first-message"); //頻道訊息
-const poll = require("./extra/poll"); //自動投票
+//#region @util
+const firstMessage = require("@util/first-message"); //頻道訊息
+const poll = require("@features/poll"); //自動投票
 //#endregion
 
 //#region mongo-指令外加檔導入
-const mongo = require("./mongo/mongo");
-const welcome = require("./mongo/welcome"); //歡迎訊息
-const leave = require("./mongo/Leave"); //離開
+const mongo = require("@util/mongo");
+const welcome = require("@features/welcome"); //歡迎訊息
+const leave = require("@features/Leave"); //離開
 //#endregion
 
 //#region redis-指令外加檔導入
-const mute = require("./redis/mute");
+const mute = require("@features/mute");
 //#endregion
 
 client.on("ready", async () => {

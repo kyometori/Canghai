@@ -1,4 +1,4 @@
-const { prefix } = require("../config.json");
+const { prefix } = require("@root/config.json");
 
 const validatePermissions = (permissions) => {
   const validPermissions = [
