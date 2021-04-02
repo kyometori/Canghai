@@ -42,6 +42,8 @@ const validatePermissions = (permissions) => {
   }
 };
 
+let recentlyRan = [];
+
 module.exports = (client, commandOptions) => {
   let {
     commands,
@@ -49,6 +51,7 @@ module.exports = (client, commandOptions) => {
     permissionError = "您沒有運行此命令的權限。",
     minArgs = 0,
     maxArgs = null,
+    cooldown = -1,
     permissions = [],
     requiredRoles = [],
     callback,
@@ -103,6 +106,16 @@ module.exports = (client, commandOptions) => {
           }
         }
 
+        // Ensure the user has not ran this command too frequently,確保用戶沒有過於頻繁地運行此命令
+        //guildId-userId-command
+        let cooldownString = `${guild.id}-${member.id}-${commands[0]}`;
+        console.log("cooldownString:", cooldownString);
+
+        if (cooldown > 0 && recentlyRan.includes(cooldownString)) {
+          message.reply("您不能快速使用該命令，請等待。");
+          return;
+        }
+
         // Split on any number of spaces,在任意數量的空格上分割
         const arguments = content.split(/[ ]+/);
 
@@ -120,11 +133,46 @@ module.exports = (client, commandOptions) => {
           return;
         }
 
+        if (cooldown > 0) {
+          recentlyRan.push(cooldownString);
+
+          setTimeout(() => {
+            console.log("Before:", recentlyRan);
+
+            recentlyRan = recentlyRan.filter((string) => {
+              return string !== cooldownString;
+            });
+
+            console.log("After:", recentlyRan);
+          }, 1000 * cooldown);
+        }
+
         // Handle the custom command code,處理自定義命令代碼
         callback(message, arguments, arguments.join(" "), client);
 
         return;
       }
+    }
+  });
+};
+
+module.exports.updateCache = (guildId, newPrefix) => {
+  guildPrefixes[guildId] = newPrefix;
+};
+
+module.exports.loadPrefixes = async (client) => {
+  await mongo().then(async (mongoose) => {
+    try {
+      for (const guild of client.guilds.cache) {
+        const guildId = guild[1].id;
+
+        const result = await commandPrefixSchema.findOne({ _id: guildId });
+        guildPrefixes[guildId] = result ? result.prefix : globalPrefix;
+      }
+
+      console.log(guildPrefixes);
+    } finally {
+      mongoose.connection.close();
     }
   });
 };
