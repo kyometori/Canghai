@@ -62,7 +62,7 @@ module.exports = (client, commandOptions) => {
     commands = [commands];
   }
 
-  console.log(`註冊命令 "${commands[0]}"`);
+  console.log(`"${commands[0]}" | ✅`);
 
   // Ensure the permissions are in an array and are all valid,確保權限在一個數組中並且全部有效
   if (permissions.length) {
@@ -85,6 +85,13 @@ module.exports = (client, commandOptions) => {
         content.toLowerCase() === command
       ) {
         // A command has been ran,命令已經執行
+
+        //判斷是否為私訊和bot
+        if (message.channel.type === "dm") {
+          message.author.send("目前不支援私人頻訊息");
+          return;
+        }
+        if (message.author.bot) return;
 
         // Ensure the user has the required permissions,確保用戶具有所需的權限
         for (const permission of permissions) {

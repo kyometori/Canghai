@@ -1,4 +1,4 @@
-const economy = require("@features/economy");
+const economy = require("!features/economy");
 
 module.exports = {
   commands: ["addbalance", "addbal"],
@@ -19,6 +19,10 @@ module.exports = {
     const coins = arguments[1];
     if (isNaN(coins)) {
       message.reply("請提供有效數量的硬幣。");
+      return;
+    }
+    if (coins > 100000) {
+      message.reply("請減少賦予的數量");
       return;
     }
 

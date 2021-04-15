@@ -1,4 +1,4 @@
-const economy = require("@features/economy");
+const economy = require("!features/economy");
 
 module.exports = {
   commands: "pay",
@@ -34,10 +34,10 @@ module.exports = {
     );
     const newBalance = await economy.addCoins(guild.id, target.id, coinsToGive);
 
-    message.reply(
-      `擬以支付給<@${target.id}>,${coinsToGive}個硬幣! 
-      現在他有${newBalance} 個硬幣 AwA!
-      你餘額剩 ${remainingCoins}~~QwQ~~!`
+    message.channel.send(
+      `你以支付給<@${target.id}>,${coinsToGive}個硬幣!` +
+        `現在他有${newBalance} 個硬幣 ouo!` +
+        `你餘額剩 ${remainingCoins}!`
     );
   },
 };

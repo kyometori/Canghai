@@ -4,7 +4,6 @@ module.exports = {
   permissionError: "您需要管理員權限才能運行此命令",
   minArgs: 2,
   maxArgs: 2,
-  //cooldown:10,
   description:
     "輸入兩數，會自動運算(Enter two numbers, it will be calculated automatically)",
   callback: (message, arguments, text) => {

@@ -7,9 +7,7 @@ module.exports = {
     message.reply("計算ping中...").then((resultMessage) => {
       const ping = resultMessage.createdTimestamp - message.createdTimestamp;
 
-      resultMessage.edit(
-        `Bot 延遲: ${ping}ms, API 延遲: ${client.ws.ping}ms`
-      );
+      resultMessage.edit(`Bot 延遲: ${ping}ms, API 延遲: ${client.ws.ping}ms`);
     });
   },
 };

@@ -5,6 +5,7 @@ module.exports = {
   commands: ["warn", "警告"],
   minArgs: 2,
   expectedArgs: "<目標的@> <原因>",
+  description: "警告他人",
   permissions: "ADMINISTRATOR",
   callback: async (message, arguments) => {
     const target = message.mentions.users.first();

@@ -5,6 +5,7 @@ module.exports = {
   commands: ["listwarnings", "lw"],
   minArgs: 1,
   expectedArgs: "<目標的 @>",
+  description: "查詢該人警告",
   permissions: "ADMINISTRATOR",
   callback: async (message, arguments, text) => {
     const target = message.mentions.users.first();
@@ -28,9 +29,10 @@ module.exports = {
         for (const warning of results.warnings) {
           const { author, timestamp, reason } = warning;
 
-          reply += `日期 ${new Date(timestamp).toLocaleDateString()} \n`
-          +`原因 "${reason}"\n`
-          +`輸入警告者 ${author}\n\n`;
+          reply +=
+            `日期 ${new Date(timestamp).toLocaleDateString()} \n` +
+            `原因 "${reason}"\n` +
+            `輸入警告者 ${author}\n\n`;
         }
 
         message.reply(reply);

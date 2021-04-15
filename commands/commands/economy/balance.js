@@ -1,4 +1,4 @@
-const economy = require("@features/economy");
+const economy = require("!features/economy");
 
 module.exports = {
   commands: ["balance", "bal"],
@@ -15,6 +15,6 @@ module.exports = {
 
     const coins = await economy.getCoins(guildId, userId);
 
-    message.reply(`你擁有${coins}的代幣!`);
+    message.channel.send(`<@${targetId}>擁有${coins}的代幣!`);
   },
 };
