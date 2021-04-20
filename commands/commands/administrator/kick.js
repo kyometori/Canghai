@@ -1,5 +1,5 @@
 module.exports = {
-  commands: ["kick", "踢除"],
+  commands: ["kick", "踢除", "k"],
   expectedArgs: "<name>",
   permissionError: "您需要管理員權限才能運行此命令",
   minArgs: 1,
@@ -13,10 +13,16 @@ module.exports = {
     const target = mentions.users.first();
     if (target) {
       const targetMember = message.guild.members.cache.get(target.id);
-      targetMember.kick();
-      message.channel.send(`${tag},已把${target}剔除該伺服器`);
-    } else {
-      message.channel.send(`${tag} 請指定要踢除的人`);
+      if (!targetMember.kickable)
+        return message.channel.send("This user is unkickable").then((msg) => {
+          msg.delete({ timeout: 5000 });
+        });
+      if (!target) {
+        message.channel.send(`${tag} 請指定要踢除的人`);
+      } else {
+        targetMember.kick();
+        message.channel.send(`${tag},已把${target}剔除該伺服器`);
+      }
     }
   },
   permissions: ["ADMINISTRATOR", "KICK_MEMBERS"],

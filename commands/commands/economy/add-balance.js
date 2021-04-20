@@ -1,4 +1,4 @@
-const economy = require("!features/economy");
+const economy = require("@features/economy");
 
 module.exports = {
   commands: ["addbalance", "addbal"],
