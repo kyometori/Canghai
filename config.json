@@ -1,6 +1,0 @@
-{
-  "token": "token",
-  "prefix": "as@",
-  "mongoPath": "mongoPath",
-  "redisPath": "redisPath"
-}
