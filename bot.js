@@ -6,7 +6,6 @@ const client = new Discord.Client();
 const config = require("@root/config.json");
 const command = require("@util/command");
 const loadCommands = require("@root/commands/load-commands");
-
 //#endregion
 
 //#region @util

@@ -5,7 +5,7 @@ module.exports = {
   minArgs: 3,
   maxArgs: 3,
   description: "禁言成員",
-  callback: (message, arguments, text) => {},
+  callback: () => {},
   permissions: ["ADMINISTRATOR", "MANAGE_ROLES"],
   requiredRoles: [],
 };

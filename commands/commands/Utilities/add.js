@@ -6,7 +6,7 @@ module.exports = {
   maxArgs: 2,
   description:
     "輸入兩數，會自動運算(Enter two numbers, it will be calculated automatically)",
-  callback: (message, arguments, text) => {
+  callback: (message, arguments) => {
     const num1 = +arguments[0];
     const num2 = +arguments[1];
 
