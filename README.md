@@ -72,6 +72,7 @@ Create a file called "config.json" within your project folder. It will have this
 ---
 
 If you need help with anything then feel free to ask in the 【TW】蒼海級巡防艦 Discord server:
+
 <a href="https://discord.gg/7ZTV2Z8ka4">
   <img align="left" alt="WaDe's Discord"  src="https://raw.githubusercontent.com/wen648/wen648/main/discord.png" />
 </a>
