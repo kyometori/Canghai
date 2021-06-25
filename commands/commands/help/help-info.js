@@ -28,6 +28,11 @@ module.exports = {
           name: "🔹serverinfo🔹",
           value: "`as@serverinfo`",
           inline: true,
+        },
+        {
+          name: "🔹Userinfo🔹",
+          value: "`as@user [name]`",
+          inline: true,
         }
       );
     message.channel.send(reply);

@@ -21,12 +21,12 @@ module.exports = {
         },
         {
           name: "🔹avatar🔹",
-          value: "`as@hasrole [name]`",
+          value: "`as@avatar [name]`",
           inline: true,
         },
         {
           name: "🔹choose🔹",
-          value: "`as@delrole [Options1] | [Options2]`",
+          value: "`as@choose [選項一] [選項二] [選項三] [選項四] ......`",
           inline: true,
         },
         {

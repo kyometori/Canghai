@@ -54,7 +54,8 @@ module.exports = {
           value: verificationLevel,
           inline: true,
         }
-      );
+      )
+      .setFooter(由${message.author.tag}查詢`);
 
     message.channel.send(embed);
   },

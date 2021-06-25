@@ -47,6 +47,11 @@ module.exports = {
           inline: true,
         },
         {
+          name: "🔹新功能🔹",
+          value: "`as@help-new`",
+          inline: true,
+        },
+        {
           name: "🔹welcome🔹",
           value: "`as@help-welcome`",
           inline: true,

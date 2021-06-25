@@ -66,10 +66,20 @@ client.on("ready", () => {
       `查詢指令:as@help`,
       `作者:WaDe#6765`,
       `支持作者:\nhttps://discord.gg/szmDnMmhGx`,
-      `正在${client.guilds.cache.size}個伺服器服務中`,
+      `${client.guilds.cache.size}個伺服器中`,
     ];
     var game = games[Math.floor(Math.random() * games.length)];
-    client.user.setActivity(`${game}`, { type: "PLAYING" });
+
+    if (game === `${client.guilds.cache.size}個伺服器中`) {
+      client.user.setActivity(`${game}`, {
+        type: "WATCHING",
+      });
+    } else {
+      client.user.setActivity(`${game}`, {
+        type: "LISTENING",
+      });
+    }
+
     return;
   }, 5000);
   //#endregion
