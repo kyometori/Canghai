@@ -1,5 +1,6 @@
 # 【TW】克勞斯#2312
 
+English | [中文](README_ZH-TW.md)
 # What is 【TW】克勞斯 ?
 
 **A Open Source Bot Using Discord.js V12 Library (Javascript)**
@@ -9,54 +10,55 @@
 
 ---
 
-# Commands :
+# AII Commands :
 
 **Over than 22 commands !**
 **Will gradually increase**
 
-- 🔹管理類🔹
- - ban
- - clear
- - kick
+🔹Moderator🔹
+  - Ban 
+  - Clear
+  - Kick
+  - Mute
 
-- 🔹經濟類🔹
- - addbal
- - bal
- - psy
+🔹Economy🔹
+ - Add
+ - Inquire
+ - Pay
 
-- 🔹身分組類🔹
- - giverole
- - hasrole
- - delrole
+🔹Roles🔹
+ - GiverRole
+ - InquireRole
+ - DeleteRole
 
-- 🔹支持類🔹
- - botinvite
- - botserver
+🔹Support🔹
+ - Botinvite
+ - Botserver
 
-- 🔹娛樂類🔹
- - add
- - avatar
- - choose
- - say
+🔹Utilities🔹
+ - Add
+ - Avatar
+ - Choose
+ - Say
 
-- 🔹未分類🔹
- - ping
- - poll
- - serverinfo
+🔹Miscellaneous🔹
+ - Ping
+ - Poll
+ - Serverinfo
 
-- 🔹welcome🔹
- - setwelcome
- - simjoin
-
-- 🔹leave🔹
- - setleave
- - simleave
+🔹Reception🔹
+ - Setwelcome
+ - Simjoin
+ - Deletewelcome
+ - Setleave
+ - Simleave
+ - Deleteleave
 
 ### For more information,Please see `as@help`
 
 ---
 
-## HOW TO USE CONFIG.JSON:
+## How to use config.json:
 
 Create a file called "config.json" within your project folder. It will have this syntax:
 
@@ -73,6 +75,6 @@ Create a file called "config.json" within your project folder. It will have this
 
 If you need help with anything then feel free to ask in the 【TW】蒼海級巡防艦 Discord server:
 
-<a href="https://discord.gg/7ZTV2Z8ka4">
+<a href="https://discord.gg/kMdW8S9nUY">
   <img align="left" alt="WaDe's Discord"  src="https://raw.githubusercontent.com/wen648/wen648/main/discord.png" />
 </a>
