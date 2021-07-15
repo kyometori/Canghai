@@ -1,9 +1,10 @@
 # 【TW】克勞斯#2312
 
-English | [中文](README_ZH-TW.md)
+### English | [中文](README_ZH-TW.md)
+
 # What is 【TW】克勞斯 ?
 
-**A Open Source Bot Using Discord.js V12 Library (Javascript)**
+**A Open Source Bot Using Discord.js v12 Library (Javascript)**
 
 **All the codes from the traditional Chinese version**
 [Invite the bot now ! ](https://discord.com/oauth2/authorize?client_id=806555021340573756&permissions=8&scope=bot)
@@ -12,7 +13,7 @@ English | [中文](README_ZH-TW.md)
 
 # AII Commands :
 
-**Over than 22 commands !**
+**Over than 25 commands !**
 **Will gradually increase**
 
 🔹Moderator🔹
