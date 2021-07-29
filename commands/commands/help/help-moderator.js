@@ -28,6 +28,21 @@ module.exports = {
           name: "🔹kick🔹",
           value: "`as@kick [name] [Rason]`",
           inline: true,
+        },
+        {
+          name: "🔹giverole🔹",
+          value: "`as@giverole [name] [rolename]`",
+          inline: true,
+        },
+        {
+          name: "🔹hasrole🔹",
+          value: "`as@hasrole [name] [rolename]`",
+          inline: true,
+        },
+        {
+          name: "🔹deleterole🔹",
+          value: "`as@delrole [name] [rolename]`",
+          inline: true,
         }
       );
     message.channel.send(reply);
